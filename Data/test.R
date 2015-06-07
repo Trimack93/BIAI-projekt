@@ -1,5 +1,0 @@
-sink("Wyniki.txt")
-cat("Przyk³adowe")
-cat("\n")
-cat("wyniki")
-sink()

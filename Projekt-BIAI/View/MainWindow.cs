@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using Projekt_BIAI.Model;
 using RDotNet;
+using RDotNet.NativeLibrary;
 
 namespace Projekt_BIAI
 {
@@ -27,18 +28,44 @@ namespace Projekt_BIAI
             RConnector = new _REngine();
 
             RConnector.Initialize();
-            
+
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 0;
+            panel1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                RConnector.launchScript("test");
+                if (comboBox1.SelectedIndex == 1)
+                {
+                    pictureBox1.Visible = true;
+                    label7.Visible = true;
+
+                    pictureBox1.Image = Projekt_BIAI.Properties.Resources.loading;
+                    label7.ForeColor = Color.Blue;
+                    label7.Text = "Trwa przetwarzanie...";
+
+                    // TODO: odpalić osobny wątek
+                    RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
+                    
+                    pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
+                    label7.ForeColor = Color.Green;
+                    label7.Text = "Przetwarzanie zakończone!";
+                }
             }
             catch (EvaluationException)
             {
-                MessageBox.Show("Nie istnieje skrypt o zadanej nazwie!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Nie istnieje skrypt o zadanej nazwie!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pictureBox1.Image = Projekt_BIAI.Properties.Resources.error;
+                label7.ForeColor = Color.Red;
+                label7.Text = "Wystąpił błąd!";
+                //this.Close();
+
             }
         }
 
@@ -46,5 +73,7 @@ namespace Projekt_BIAI
         {
             RConnector.DisposeEngine();
         }
+
+       
     }
 }
