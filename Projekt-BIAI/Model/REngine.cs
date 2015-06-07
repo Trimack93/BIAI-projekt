@@ -27,20 +27,24 @@ namespace Projekt_BIAI.Model
             engine.Initialize();
 
             // Zmienia workplace dla instancji R na wymienioną - do indywidualnych potrzeb
-            //engine.Evaluate("setwd(\"E:/Git/BIAI-projekt/Data\")");
-            engine.Evaluate("setwd(\"E:/GitHub/BIAI-projekt/Data\")");   // lapek
+            engine.Evaluate("setwd(\"E:/Git/BIAI-projekt/Data\")");
+            //engine.Evaluate("setwd(\"E:/GitHub/BIAI-projekt/Data\")");   // lapek
 
         }
 
         /// <summary>
         /// Odpala skrypt o podanej nazwie
         /// </summary>
+        /// <param name="scriptName">Nazwa pliku (z rozszerszeniem .R lub bez)</param>
+        /// <param name="hasArguments">Czy dołączamy jakieś argumenty wywołania</param>
+        /// <param name="arg">Argumenty wywołania</param>
         public void launchScript(string scriptName, bool hasArguments, params string[] arg)
         {
             try
             {
                 if (engine != null)
                 {
+                    // Dodawanie argumentów (symulacja linii poleceń
                     if (hasArguments)
                     {
                         string arguments = arg[0].ToString();

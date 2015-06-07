@@ -34,7 +34,7 @@ namespace Projekt_BIAI
         private void MainWindow_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
-            panel1.Visible = false;
+            //panel1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,7 +51,12 @@ namespace Projekt_BIAI
                     label7.Text = "Trwa przetwarzanie...";
 
                     // TODO: odpalić osobny wątek
-                    RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
+                    RConnector.launchScript("Forest2", true, treeNumber.Value.ToString(),
+                                                                numericUpDown1.Value.ToString(),
+                                                                numericUpDown2.Value.ToString(),
+                                                                numericUpDown3.Value.ToString(),
+                                                                numericUpDown4.Value.ToString(),
+                                                                numericUpDown5.Value.ToString());
                     
                     pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
                     label7.ForeColor = Color.Green;
@@ -60,7 +65,6 @@ namespace Projekt_BIAI
             }
             catch (EvaluationException)
             {
-                //MessageBox.Show("Nie istnieje skrypt o zadanej nazwie!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 pictureBox1.Image = Projekt_BIAI.Properties.Resources.error;
                 label7.ForeColor = Color.Red;
                 label7.Text = "Wystąpił błąd!";
