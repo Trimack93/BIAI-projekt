@@ -34,34 +34,37 @@ namespace Projekt_BIAI
         private void MainWindow_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
-            //panel1.Visible = false;
+            panel1.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (comboBox1.SelectedIndex == 1)
-                {
-                    pictureBox1.Visible = true;
-                    label7.Visible = true;
+                pictureBox1.Visible = true;
+                label7.Visible = true;
 
-                    pictureBox1.Image = Projekt_BIAI.Properties.Resources.loading;
-                    label7.ForeColor = Color.Blue;
-                    label7.Text = "Trwa przetwarzanie...";
+                pictureBox1.Image = Projekt_BIAI.Properties.Resources.loading;
+                label7.ForeColor = Color.Blue;
+                label7.Text = "Trwa przetwarzanie...";
 
-                    // TODO: odpalić osobny wątek
-                    RConnector.launchScript("Forest2", true, treeNumber.Value.ToString(),
+                // TODO: odpalić osobny wątek
+
+                RConnector.launchScript("ExtraColumns", false);
+
+                if (comboBox1.SelectedIndex == 0)
+                    RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
+                else
+                    RConnector.launchScript("UserForest", true, treeNumber.Value.ToString(),
                                                                 numericUpDown1.Value.ToString(),
                                                                 numericUpDown2.Value.ToString(),
                                                                 numericUpDown3.Value.ToString(),
                                                                 numericUpDown4.Value.ToString(),
                                                                 numericUpDown5.Value.ToString());
                     
-                    pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
-                    label7.ForeColor = Color.Green;
-                    label7.Text = "Przetwarzanie zakończone!";
-                }
+                pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
+                label7.ForeColor = Color.Green;
+                label7.Text = "Przetwarzanie zakończone!";
             }
             catch (EvaluationException)
             {
@@ -76,6 +79,29 @@ namespace Projekt_BIAI
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             RConnector.DisposeEngine();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel1.Enabled = (comboBox1.SelectedIndex == 0 ? false : true);
+        }
+
+        /// <summary>
+        /// Określa w szer. i wys. geograficznej miejsce na które kliknął użytkownik.
+        /// </summary>
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            int cursorWidth = pictureBox2.PointToClient(Cursor.Position).X;
+            int cursorHeight = pictureBox2.PointToClient(Cursor.Position).Y;
+
+            float cursorLongitude = ((float)cursorWidth / pictureBox2.Width) * 360 - 180;
+            float cursorLatitude = ((float)(pictureBox2.Height - cursorHeight) / pictureBox2.Height) * 180 - 75;    // -75, bo mapa niesymetryczna
+
+            if (comboBox1.SelectedIndex == 1)
+            {
+                numericUpDown1.Value = (cursorLatitude < 90) ? (int)cursorLatitude : 90;
+                numericUpDown2.Value = (int)cursorLongitude;
+            }
         }
 
        

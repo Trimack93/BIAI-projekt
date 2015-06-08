@@ -46,6 +46,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -73,9 +74,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(3, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 18);
+            this.label1.Size = new System.Drawing.Size(178, 18);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Długość geograficzna: ";
+            this.label1.Text = "Szerokość geograficzna: ";
             // 
             // label2
             // 
@@ -83,9 +84,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(3, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 18);
+            this.label2.Size = new System.Drawing.Size(156, 18);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Szerokość geograficzna:";
+            this.label2.Text = "Długość geograficzna:";
             // 
             // label3
             // 
@@ -122,12 +123,13 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Losowy las 1",
-            "Losowy las 2"});
-            this.comboBox1.Location = new System.Drawing.Point(33, 70);
+            "Plik CSV",
+            "Dane użytkownika"});
+            this.comboBox1.Location = new System.Drawing.Point(180, 70);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(97, 21);
+            this.comboBox1.Size = new System.Drawing.Size(126, 21);
             this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -238,14 +240,14 @@
             // 
             // treeNumber
             // 
-            this.treeNumber.Location = new System.Drawing.Point(270, 70);
+            this.treeNumber.Location = new System.Drawing.Point(180, 113);
             this.treeNumber.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.treeNumber.Name = "treeNumber";
-            this.treeNumber.Size = new System.Drawing.Size(86, 20);
+            this.treeNumber.Size = new System.Drawing.Size(126, 20);
             this.treeNumber.TabIndex = 13;
             this.treeNumber.Value = new decimal(new int[] {
             10,
@@ -257,7 +259,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(154, 68);
+            this.label6.Location = new System.Drawing.Point(29, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 20);
             this.label6.TabIndex = 14;
@@ -293,12 +295,24 @@
             this.pictureBox2.Size = new System.Drawing.Size(1000, 466);
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(30, 70);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 18);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Źródło danych:";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 682);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label7);
@@ -348,6 +362,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label8;
     }
 }
 

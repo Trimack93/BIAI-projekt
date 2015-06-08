@@ -30,6 +30,8 @@ namespace Projekt_BIAI.Model
             engine.Evaluate("setwd(\"E:/Git/BIAI-projekt/Data\")");
             //engine.Evaluate("setwd(\"E:/GitHub/BIAI-projekt/Data\")");   // lapek
 
+            launchScript("setup", false);
+
         }
 
         /// <summary>
