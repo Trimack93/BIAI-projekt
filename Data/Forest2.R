@@ -18,14 +18,14 @@ for (i in 1:length(args))
 sink()
 
 # Miejscowy random
-set.seed(3)
+set.seed(4)
 
 # Stwórz las drzew decyzyjnych
-forest2 <- randomForest(as.factor(good) ~ Continent + resolution + size + latitude + longitude + width + height + proportions, data = train, mtry = 3, importance=TRUE, ntree= treeNumber)
+forest2 <- randomForest(as.factor(good) ~ Continent + resolution + size + latitude + longitude + width + height + proportions, data = train, mtry = 3, importance=TRUE, ntree= 100)
 
 # Wypisanie wa¿noœci poszczególnych parametrów podczas podejmowania decyzji
 importance(forest2)
-#varImpPlot(forest2)
+varImpPlot(forest2)
 
 # Dokonaj analizy danych na podstawie lasu
 random_forest_result2 <- predict(forest2, test, OOB = TRUE, type = "response")
