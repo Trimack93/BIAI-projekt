@@ -25,7 +25,7 @@ forest2 <- randomForest(as.factor(good) ~ Continent + resolution + size + latitu
 
 # Wypisanie wa¿noœci poszczególnych parametrów podczas podejmowania decyzji
 importance(forest2)
-varImpPlot(forest2)
+#varImpPlot(forest2)
 
 # Dokonaj analizy danych na podstawie lasu
 random_forest_result2 <- predict(forest2, test, OOB = TRUE, type = "response")
@@ -35,3 +35,4 @@ submit2 <- data.frame(Id = test$id, good = random_forest_result2)
 write.csv(submit2, file = "CSV/random_forest2.csv", row.names = FALSE)
 
 prop.table(table(submit2$good))
+

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Projekt_BIAI.Model;
 using RDotNet;
 using RDotNet.NativeLibrary;
@@ -20,6 +19,11 @@ namespace Projekt_BIAI
         /// Nasza instancja silnika R - może przyjmować wyrażenia w języku R lub odpalać gotowe skrypty
         /// </summary>
         private _REngine RConnector;
+
+        /// <summary>
+        /// True, jeśli podczas obliczeń wystąpił błąd
+        /// </summary>
+        //private bool errorOccured = false;
 
         public MainWindow()
         {
@@ -39,41 +43,65 @@ namespace Projekt_BIAI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            pictureBox1.Visible = true;
+            label7.Visible = true;
+
+            pictureBox1.Image = Projekt_BIAI.Properties.Resources.loading;
+            label7.ForeColor = Color.Blue;
+            label7.Text = "Trwa przetwarzanie...";
+
             try
             {
-                pictureBox1.Visible = true;
-                label7.Visible = true;
-
-                pictureBox1.Image = Projekt_BIAI.Properties.Resources.loading;
-                label7.ForeColor = Color.Blue;
-                label7.Text = "Trwa przetwarzanie...";
-
-                // TODO: odpalić osobny wątek
-
                 RConnector.launchScript("ExtraColumns", false);
 
                 if (comboBox1.SelectedIndex == 0)
-                    RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
+                    backgroundWorker1.RunWorkerAsync("Forest2");
                 else
-                    RConnector.launchScript("UserForest", true, treeNumber.Value.ToString(),
-                                                                numericUpDown1.Value.ToString(),
-                                                                numericUpDown2.Value.ToString(),
-                                                                numericUpDown3.Value.ToString(),
-                                                                numericUpDown4.Value.ToString(),
-                                                                numericUpDown5.Value.ToString());
-                    
-                pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
-                label7.ForeColor = Color.Green;
-                label7.Text = "Przetwarzanie zakończone!";
+                    backgroundWorker1.RunWorkerAsync("UserForest");
+
+                button1.Enabled = false;
             }
-            catch (EvaluationException)
+            catch (EvaluationException)                 // Chyci tylko wyjątek z launchScripta
             {
                 pictureBox1.Image = Projekt_BIAI.Properties.Resources.error;
                 label7.ForeColor = Color.Red;
                 label7.Text = "Wystąpił błąd!";
                 //this.Close();
-
             }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (e.Argument.Equals("Forest2"))
+                RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
+
+            else if (e.Argument.Equals("UserForest"))
+            {
+                RConnector.launchScript("UserForest", true, treeNumber.Value.ToString(),
+                                                            numericUpDown1.Value.ToString(),
+                                                            numericUpDown2.Value.ToString(),
+                                                            numericUpDown3.Value.ToString(),
+                                                            numericUpDown4.Value.ToString(),
+                                                            numericUpDown5.Value.ToString());
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)                    // e.Error przechowuje informacje nt. wszelkich wyjątków, które zostały złapane
+            {                                       // w wątku Background Worker'a
+                pictureBox1.Image = Projekt_BIAI.Properties.Resources.error;
+                label7.ForeColor = Color.Red;
+                label7.Text = "Wystąpił błąd!";
+            }
+            else
+            {
+                pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
+                label7.ForeColor = Color.Green;
+                label7.Text = "Przetwarzanie zakończone!";
+            }
+
+            button1.Enabled = true;
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -103,7 +131,5 @@ namespace Projekt_BIAI
                 numericUpDown2.Value = (int)cursorLongitude;
             }
         }
-
-       
     }
 }

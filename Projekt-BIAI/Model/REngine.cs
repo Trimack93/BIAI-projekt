@@ -28,6 +28,7 @@ namespace Projekt_BIAI.Model
 
             // Zmienia workplace dla instancji R na wymienioną - do indywidualnych potrzeb
             engine.Evaluate("setwd(\"E:/Git/BIAI-projekt/Data\")");
+            //engine.Evaluate("setwd(\"C:/Users/Trimack/Desktop/studia/BIAI/Projekt/BIAI-projekt/Data\")");   // sówka
             //engine.Evaluate("setwd(\"E:/GitHub/BIAI-projekt/Data\")");   // lapek
 
             launchScript("setup", false);
@@ -61,7 +62,6 @@ namespace Projekt_BIAI.Model
                         engine.Evaluate("source('" + scriptName + "')");
                     else
                     {
-                        
                         engine.Evaluate("source('" + scriptName + ".R')");
                     }
                 }
