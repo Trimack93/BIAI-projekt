@@ -41,7 +41,8 @@ namespace Projekt_BIAI.Model
         /// <param name="scriptName">Nazwa pliku (z rozszerszeniem .R lub bez)</param>
         /// <param name="hasArguments">Czy dołączamy jakieś argumenty wywołania</param>
         /// <param name="arg">Argumenty wywołania</param>
-        public void launchScript(string scriptName, bool hasArguments, params string[] arg)
+        /// <returns>-1 dla danych z pliku; dla własnoręcznych 0 jak złe zdjęcie, 1 jak dobre</returns>
+        public int launchScript(string scriptName, bool hasArguments, params string[] arg)
         {
             try
             {
@@ -65,11 +66,19 @@ namespace Projekt_BIAI.Model
                         engine.Evaluate("source('" + scriptName + ".R')");
                     }
                 }
+
+                if (scriptName.Contains("UserForest"))
+                {
+                    IntegerVector result = engine.GetSymbol("userResult").AsInteger();
+                    return result[0];
+                }
+
             }
             catch (EvaluationException)
             {
                 throw new EvaluationException("Brak pliku");
             }
+            return -1;
         }
 
         /// <summary>

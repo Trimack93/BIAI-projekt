@@ -71,6 +71,11 @@ train$resolution <- 0
 train$resolution <- as.integer(sqrt(train$height^2 + train$width^2))
 test$resolution <- as.integer(sqrt(test$height^2 + test$width^2))
 
+# UserInput - wykorzystywany przy w³asnych danych.
+userInput = data.frame(matrix(NA, nrow = 1, ncol = 13))
+dim(userInput)
+names(userInput) <- colnames(train)
+
 # Poni¿ej tylko zabawa drzewami decyzyjnymi
 
 #aggregate(good ~ resolution, data=train, FUN=function(x){sum(x)/length(x)})

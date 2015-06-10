@@ -21,6 +21,11 @@ namespace Projekt_BIAI
         private _REngine RConnector;
 
         /// <summary>
+        /// o lub 1 zwracane, jeżeli wprowadziliśmy własne dane
+        /// </summary>
+        private int result;
+
+        /// <summary>
         /// True, jeśli podczas obliczeń wystąpił błąd
         /// </summary>
         //private bool errorOccured = false;
@@ -33,6 +38,8 @@ namespace Projekt_BIAI
 
             RConnector.Initialize();
 
+            label9.Visible = false;
+            label10.Visible = false;
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -49,6 +56,9 @@ namespace Projekt_BIAI
             pictureBox1.Image = Projekt_BIAI.Properties.Resources.loading;
             label7.ForeColor = Color.Blue;
             label7.Text = "Trwa przetwarzanie...";
+
+            label9.Visible = false;
+            label10.Visible = false;
 
             try
             {
@@ -73,16 +83,17 @@ namespace Projekt_BIAI
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             if (e.Argument.Equals("Forest2"))
-                RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
+                result = RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
 
             else if (e.Argument.Equals("UserForest"))
             {
-                RConnector.launchScript("UserForest", true, treeNumber.Value.ToString(),
+                result = RConnector.launchScript("UserForest", true, treeNumber.Value.ToString(),
                                                             numericUpDown1.Value.ToString(),
                                                             numericUpDown2.Value.ToString(),
                                                             numericUpDown3.Value.ToString(),
                                                             numericUpDown4.Value.ToString(),
                                                             numericUpDown5.Value.ToString());
+
             }
         }
 
@@ -99,6 +110,29 @@ namespace Projekt_BIAI
                 pictureBox1.Image = Projekt_BIAI.Properties.Resources.OK;
                 label7.ForeColor = Color.Green;
                 label7.Text = "Przetwarzanie zakończone!";
+
+                switch(result)
+                {
+                    case(-1):
+                        break;
+
+                    case(0):
+                        label9.Visible = true;
+                        label10.Visible = true;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "Negatywny";
+                        break;
+
+                    case(1):
+                        label9.Visible = true;
+                        label10.Visible = true;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "Pozytywny";
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
             button1.Enabled = true;
