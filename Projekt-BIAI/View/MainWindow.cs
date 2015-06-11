@@ -93,7 +93,6 @@ namespace Projekt_BIAI
                                                             numericUpDown3.Value.ToString(),
                                                             numericUpDown4.Value.ToString(),
                                                             numericUpDown5.Value.ToString());
-
             }
         }
 
