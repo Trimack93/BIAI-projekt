@@ -6,7 +6,7 @@ library(neuralnet)
 norm.fun = function(x){(x - min(x))/(max(x) - min(x))}
 train.norm = apply(train[,2:6], 2, norm.fun)
 
-neural <- neuralnet(good ~ longitude + latitude + width + height + size, data=train, hidden = 5, stepmax = 10000000, threshold = 0.01, linear.output = FALSE)
+neural <- neuralnet(good ~ longitude + latitude + width + height + size, data=train, hidden = 5, stepmax = 1000000, threshold = 0.01, linear.output = FALSE)
 
 plot(neural)
 

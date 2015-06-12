@@ -97,9 +97,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.Location = new System.Drawing.Point(3, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 18);
+            this.label3.Size = new System.Drawing.Size(152, 18);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Rozmiar grafiki:";
+            this.label3.Text = "Ilość zdjęć w albumie:";
             // 
             // label4
             // 
@@ -162,6 +162,11 @@
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(172, 20);
             this.numericUpDown5.TabIndex = 15;
+            this.numericUpDown5.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // numericUpDown4
             // 

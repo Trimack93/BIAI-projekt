@@ -21,10 +21,10 @@ sink()
 set.seed(4)
 
 # Stwórz las drzew decyzyjnych
-forest2 <- randomForest(as.factor(good) ~ Continent + resolution + size + latitude + longitude + width + height + proportions, data = train, mtry = 3, importance=TRUE, ntree= 100)
+forest2 <- randomForest(as.factor(good) ~ Continent + resolution + size + latitude + longitude + width + height + proportions + nameLength + captionLength + descriptionLength, data = train, mtry = 11, importance=TRUE, ntree= 100)
 
 # Wypisanie wa¿noœci poszczególnych parametrów podczas podejmowania decyzji
-importance(forest2)
+#importance(forest2)
 #varImpPlot(forest2)
 
 # Dokonaj analizy danych na podstawie lasu

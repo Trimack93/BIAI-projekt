@@ -1,4 +1,7 @@
-library(rpart)
+#library(rpart)
+#library(rattle)
+#library(rpart.plot)
+#library(RColorBrewer)
 
 # Info o tabeli
 str(train)
@@ -71,8 +74,28 @@ train$resolution <- 0
 train$resolution <- as.integer(sqrt(train$height^2 + train$width^2))
 test$resolution <- as.integer(sqrt(test$height^2 + test$width^2))
 
+train$nameLength <- sapply(gregexpr("\\W+", train$name), function(x) sum(x>0) ) + 1 
+train$nameLength[nchar(train$name) < 1] <- 0
+
+test$nameLength <- sapply(gregexpr("\\W+", test$name), function(x) sum(x>0) ) + 1 
+test$nameLength[nchar(test$name) < 1] <- 0
+
+train$captionLength <- sapply(gregexpr("\\W+", train$caption), function(x) sum(x>0) ) + 1 
+train$captionLength[nchar(train$caption) < 1] <- 0
+
+test$captionLength <- sapply(gregexpr("\\W+", test$caption), function(x) sum(x>0) ) + 1 
+test$captionLength[nchar(test$caption) < 1] <- 0
+
+train$descriptionLength <- sapply(gregexpr("\\W+", train$description), function(x) sum(x>0) ) + 1 
+train$descriptionLength[nchar(train$description) < 1] <- 0
+
+test$descriptionLength <- sapply(gregexpr("\\W+", test$description), function(x) sum(x>0) ) + 1 
+test$descriptionLength[nchar(test$description) < 1] <- 0
+
+prop.table(table(train$descriptionLength, train$good), 1)
+
 # UserInput - wykorzystywany przy w³asnych danych.
-userInput = data.frame(matrix(NA, nrow = 1, ncol = 13))
+userInput = data.frame(matrix(NA, nrow = 1, ncol = 16))
 dim(userInput)
 names(userInput) <- colnames(train)
 
@@ -80,7 +103,7 @@ names(userInput) <- colnames(train)
 
 #aggregate(good ~ resolution, data=train, FUN=function(x){sum(x)/length(x)})
 
-#tree1 <- rpart(good ~ Continent + resolution + size, data=train, method = "class", control=rpart.control(minsplit=1000, cp=0,99))
+#tree1 <- rpart(good ~ descriptionLength, data=train, method = "class", control=rpart.control(minsplit=300, cp=0,1))
 #fancyRpartPlot(tree1)
 
 #Prediction <- predict(tree1, test, type = "class")
