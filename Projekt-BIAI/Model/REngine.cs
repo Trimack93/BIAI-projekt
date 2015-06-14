@@ -67,7 +67,7 @@ namespace Projekt_BIAI.Model
                     }
                 }
 
-                if (scriptName.Contains("UserForest"))
+                if (scriptName.Contains("User"))
                 {
                     IntegerVector result = engine.GetSymbol("userResult").AsInteger();
                     return result[0];

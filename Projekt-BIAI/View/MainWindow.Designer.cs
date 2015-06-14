@@ -50,6 +50,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -63,7 +65,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(404, 70);
+            this.button1.Location = new System.Drawing.Point(522, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(104, 21);
             this.button1.TabIndex = 0;
@@ -128,7 +130,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Plik CSV",
             "Dane użytkownika"});
-            this.comboBox1.Location = new System.Drawing.Point(180, 70);
+            this.comboBox1.Location = new System.Drawing.Point(153, 24);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(126, 21);
             this.comboBox1.TabIndex = 11;
@@ -146,7 +148,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(556, 33);
+            this.panel1.Location = new System.Drawing.Point(654, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(370, 157);
             this.panel1.TabIndex = 12;
@@ -248,7 +250,7 @@
             // 
             // treeNumber
             // 
-            this.treeNumber.Location = new System.Drawing.Point(180, 113);
+            this.treeNumber.Location = new System.Drawing.Point(153, 113);
             this.treeNumber.Minimum = new decimal(new int[] {
             1,
             0,
@@ -278,7 +280,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(154, 24);
+            this.label7.Location = new System.Drawing.Point(349, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(179, 20);
             this.label7.TabIndex = 15;
@@ -288,7 +290,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Projekt_BIAI.Properties.Resources.loading;
-            this.pictureBox1.Location = new System.Drawing.Point(404, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(602, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.TabIndex = 16;
@@ -309,7 +311,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(30, 70);
+            this.label8.Location = new System.Drawing.Point(30, 24);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(106, 18);
             this.label8.TabIndex = 18;
@@ -325,7 +327,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(422, 113);
+            this.label9.Location = new System.Drawing.Point(540, 113);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 24);
             this.label9.TabIndex = 19;
@@ -335,17 +337,41 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(401, 155);
+            this.label10.Location = new System.Drawing.Point(519, 155);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(107, 24);
             this.label10.TabIndex = 20;
             this.label10.Text = "Pozytywny";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(30, 55);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(70, 18);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Algorytm:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Las Losowy 1",
+            "Las Losowy 2"});
+            this.comboBox2.Location = new System.Drawing.Point(153, 51);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(126, 21);
+            this.comboBox2.TabIndex = 22;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 682);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -402,6 +428,8 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

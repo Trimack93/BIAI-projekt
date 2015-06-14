@@ -45,6 +45,8 @@ namespace Projekt_BIAI
         private void MainWindow_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+
             panel1.Enabled = false;
         }
 
@@ -64,10 +66,14 @@ namespace Projekt_BIAI
             {
                 RConnector.launchScript("ExtraColumns", false);
 
-                if (comboBox1.SelectedIndex == 0)
+                if (comboBox1.SelectedIndex == 0 && comboBox2.SelectedIndex == 0)
+                    backgroundWorker1.RunWorkerAsync("Forest1");
+                else if (comboBox1.SelectedIndex == 1 && comboBox2.SelectedIndex == 0)
+                    backgroundWorker1.RunWorkerAsync("UserForest1");
+                else if (comboBox1.SelectedIndex == 0 && comboBox2.SelectedIndex == 1)
                     backgroundWorker1.RunWorkerAsync("Forest2");
                 else
-                    backgroundWorker1.RunWorkerAsync("UserForest");
+                    backgroundWorker1.RunWorkerAsync("UserForest2");
 
                 button1.Enabled = false;
             }
@@ -82,12 +88,26 @@ namespace Projekt_BIAI
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+
             if (e.Argument.Equals("Forest2"))
                 result = RConnector.launchScript("Forest2", true, treeNumber.Value.ToString());
 
-            else if (e.Argument.Equals("UserForest"))
+            else if (e.Argument.Equals("UserForest1"))
             {
-                result = RConnector.launchScript("UserForest", true, treeNumber.Value.ToString(),
+                result = RConnector.launchScript("UserForest1", true, treeNumber.Value.ToString(),
+                                                            numericUpDown1.Value.ToString(),
+                                                            numericUpDown2.Value.ToString(),
+                                                            numericUpDown3.Value.ToString(),
+                                                            numericUpDown4.Value.ToString(),
+                                                            numericUpDown5.Value.ToString());
+            }
+
+            else if (e.Argument.Equals("Forest1"))
+                result = RConnector.launchScript("Forest1", true, treeNumber.Value.ToString());
+
+            else if (e.Argument.Equals("UserForest2"))
+            {
+                result = RConnector.launchScript("UserForest2", true, treeNumber.Value.ToString(),
                                                             numericUpDown1.Value.ToString(),
                                                             numericUpDown2.Value.ToString(),
                                                             numericUpDown3.Value.ToString(),

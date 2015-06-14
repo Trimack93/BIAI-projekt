@@ -8,15 +8,6 @@ args=(commandArgs())
 
 treeNumber <-  as.numeric(args[1])
 
-# Tylko do sprawdzania, czy dobrze przekazano parametry
-sink(file = "output.txt")
-for (i in 1:length(args))
-{
-  cat(args[i])
-  cat('\n')
-}
-sink()
-
 # Miejscowy random
 set.seed(4)
 
