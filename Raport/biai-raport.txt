@@ -1,0 +1,5 @@
+- opis projektu
+- opis podejœcia (algorytmu)
+- opis biblioteki (WA¯NE) - ok. 2 strony
+- podsumowanie
+- we wnioskach: wp³yw zmiany parametrów na wynik

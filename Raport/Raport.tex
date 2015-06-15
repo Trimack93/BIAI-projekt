@@ -1,0 +1,100 @@
+% !TeX spellcheck = pl_PL
+\documentclass[a4paper,twoside]{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+
+\usepackage[unicode, bookmarks=true]{hyperref} %do zakładek
+\usepackage{tabto} % do tabulacji
+\NumTabs{11} % globalne ustawienie wielkosci tabulacji
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{bigstrut}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{pdfpages}
+\usepackage{sidecap}
+\usepackage{wrapfig}
+\usepackage{float}	%for figure& table placement in text
+\usepackage{textgreek}
+
+
+\setlength{\textheight}{24cm}
+\setlength{\textwidth}{15.92cm}
+\setlength{\footskip}{10mm}
+\setlength{\oddsidemargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+\setlength{\topmargin}{0mm}
+\setlength{\headsep}{5mm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\graphicspath{ {./img/} }
+
+% === Reset inkrementacji sekcji przy nowym parcie === %
+\usepackage{titlesec}
+
+\makeatletter
+\@addtoreset{section}{part}
+\makeatother
+\titleformat{\part}[display]
+{\normalfont\LARGE\bfseries\left}{}{0pt}{}
+
+\titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{blue}{|}\hsp}{0pt}{\Huge\bfseries}
+
+
+\begin{document}
+	
+	\begin{titlepage}
+		\begin{center}
+			
+			% Upper part of the page. The '~' is needed because \\
+			% only works if a paragraph has started.
+			\includegraphics[width=0.5\textwidth]{./img/logo.png}~\\[1cm]
+			%?[width=0.15\textwidth]
+			
+			\textsc{\LARGE Politechnika Śląska w Gliwicach}\\[1.5cm]
+			
+			\textsc{\LARGE Biologically Inspired Artificial Intelligence}\\[0.2cm]
+			
+			\textsc{\LARGE Raport z projektu}\\[0.2cm]
+			
+			% Title
+			\HRule \\[0.4cm]
+			{ \Huge \bfseries Predykcja jakości obrazów na podstawie metadanych \\[0.4cm] }
+			
+			\HRule \\[1.5cm]
+			
+			% Author and supervisor
+			\textsc{\Large Autorzy:} \\
+			Bartłomiej Buchała \\
+			Marek Motyka \\[1.0cm]
+			
+			Informatyka, semestr VI \\
+			Rok akademicki 2014/2015 \\
+			Grupa GKiO3
+			
+			\vfill
+			
+			% Bottom of the page
+			{\large \today}
+			
+		\end{center}
+	\end{titlepage}
+	
+\newpage
+
+\section{Temat projektu}
+
+\section{Implementacja algorytmu}
+
+\section{Wykorzystane biblioteki}
+
+\section{Podsumowanie}
+
+\end{document}
