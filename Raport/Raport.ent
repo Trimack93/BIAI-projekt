@@ -1,0 +1,12 @@
+\@doanenote {1}
+macro:->\url
+{https://www.kaggle.com/c/PhotoQualityPrediction}
+\@endanenote 
+\@doanenote {2}
+macro:->\url
+{http://cran.r-project.org/web/packages/randomForest/randomForest.pdf}
+\@endanenote 
+\@doanenote {3}
+macro:->\url
+{http://cran.r-project.org/web/packages/party/party.pdf}
+\@endanenote 
